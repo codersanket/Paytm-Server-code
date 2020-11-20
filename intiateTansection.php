@@ -10,6 +10,8 @@ $orderId=$_POST["ORDERID"];
 $amount=$_POST["amount"];
 $key=$_POST["mkey"];
 $custId=$_POST["custId"];
+$url=$_POST["url"];
+$websiteName=$_POST["web"];
 
 
 // $mid="zlsjBq52825503339453";
@@ -19,16 +21,16 @@ $paytmParams = array();
 
 $paytmParams["body"] = array(
 "requestType" => "Payment",
-"mid" => $mid,
-"websiteName" => "DEFAULT",
-"orderId"  => $orderId,
+"mid" =>$mid,
+"websiteName" =>$websiteName,
+"orderId"  =>$orderId,
 "callbackurl" =>"https://merchant.com/callback",
 "txnAmount" => array(
-"value"=> $amount,
+"value"=>$amount,
 "currency" => "INR"
  ),
 "userInfo" => array(
-"custId" => $custId
+"custId" =>$custId
  )
 );
 
@@ -44,7 +46,7 @@ $post_data =json_encode($paytmParams,JSON_UNESCAPED_SLASHES);
 
 
 
- $url = "https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid=$mid&orderId=$orderId";
+ $url = "$url/theia/api/v1/initiateTransaction?mid=$mid&orderId=$orderId";
 
 $ch =curl_init($url);
 
